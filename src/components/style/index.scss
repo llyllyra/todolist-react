@@ -1,0 +1,17 @@
+@import "./reset";
+@import "color";
+@import "./App";
+@import "./TodoList";
+@import "./todo";
+@import "./FormTodoList";
+@import "./Delete";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $bgc;
+
+}
+

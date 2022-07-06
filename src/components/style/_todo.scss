@@ -1,0 +1,20 @@
+.todo-list {
+  background: $principal;
+  padding: .5rem 1.5rem;
+  font-size: 1.2rem;
+  margin-bottom: .2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.complete {
+  color: $textS;
+  background: $secondaire;
+  text-decoration: line-through;
+}
+
+.complete-Icon {
+  display: none;
+}

@@ -1,0 +1,17 @@
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 0.7rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: $principal
+
+}
