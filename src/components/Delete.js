@@ -6,19 +6,20 @@ const Delete = ( {
 	                 todos
                  } ) =>
 {
-	let test = todos.filter ( todo => !todo.complete ).length;
+	let todoLength = todos.filter ( todo => !todo.complete ).length;
+	
 	return (
-			<div className = "delete">
+			<section className = "delete">
 				<div>
 					<span
-							className = { test
+							className = { todoLength
 							              === 0
 							              ? "false"
 							              : "red" }
-					>{ test } tache{ test
-					                 > 1
-					                 ? "s"
-					                 : "" } à faire</span>
+					>{ todoLength } tache{ todoLength
+					                       > 1
+					                       ? "s"
+					                       : "" } à faire</span>
 				
 				</div>
 				<button
@@ -27,7 +28,7 @@ const Delete = ( {
 				>
 					<MdDeleteForever />
 				</button>
-			</div>
+			</section>
 	);
 };
 

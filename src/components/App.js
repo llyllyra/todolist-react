@@ -15,6 +15,7 @@ function App ()
 {
 	const [ todos, setTodos ] = useState ( [] );
 	const todoRef             = useRef ();
+	const importanceRef       = useRef ();
 	
 	useEffect (
 			() =>
@@ -39,7 +40,7 @@ function App ()
 			[ todos ]
 	);
 	
-	function toggleTodo ( id )
+	const toggleTodo = ( id ) =>
 	{
 		const newTodos = [ ... todos ];
 		const todo     = newTodos.find ( todo => todo.id
@@ -47,42 +48,46 @@ function App ()
 		todo.complete
 		               = !todo.complete;
 		setTodos ( newTodos );
-	}
+	};
 	
-	function handleAddTodo ()
+	const handleAddTodo = () =>
 	{
-		const name = todoRef.current.value;
+		let importance = "";
+		const name     = todoRef.current.value;
 		if ( name
 		     === '' )
 		{
 			return;
 		}
+		
+		
 		setTodos ( prevTodos =>
 		           {
 			           return [ ... prevTodos,
 			                    {
-				                    id      : uuidv4 (),
-				                    name    : name,
-				                    complete: false
+				                    id        : uuidv4 (),
+				                    name      : name,
+				                    complete  : false,
+				                    importance: importance
 			                    }
 			           ];
 		           } );
 		todoRef.current.value
 				= null;
-	}
+	};
 	
-	function removeId ( id )
+	const removeId = id =>
 	{
 		const removeArr = todos.filter ( todo => todo.id
 		                                         !== id );
 		setTodos ( removeArr );
 		
-	}
+	};
 	
-	function handleUpade (
+	const handleUpade = (
 			editValue,
 			id
-	)
+	) =>
 	{
 		const newTodos = [ ... todos ];
 		const todo     = newTodos.find ( todo => todo.id
@@ -90,14 +95,14 @@ function App ()
 		todo.name
 		               = editValue;
 		setTodos ( newTodos );
-	}
+	};
 	
 	
-	function handleClearTodos ()
+	const handleClearTodos = () =>
 	{
 		const newTodos = todos.filter ( todo => !todo.complete );
 		setTodos ( newTodos );
-	}
+	};
 	
 	return (
 			<>
@@ -110,6 +115,7 @@ function App ()
 				<main>
 					<FormTodoList
 							todoRef = { todoRef }
+							importanceRef = { importanceRef }
 							handleAddTodo = { handleAddTodo }
 					/>
 					<Delete

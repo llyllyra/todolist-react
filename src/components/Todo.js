@@ -11,19 +11,19 @@ export default function Todo ( {
 	                               handleUpade
                                } )
 {
-	function handleTodoClick ()
-	{
-		toggleTodo ( todo.id );
-	}
-	
-	function remove ()
-	{
-		removeId ( todo.id );
-		
-	}
-	
 	const [ onEdit, setOnEdit ]       = useState ( false );
 	const [ editValue, setEditValue ] = useState ( todo.name );
+	
+	const handleTodoClick = () =>
+	{
+		toggleTodo ( todo.id );
+	};
+	
+	const remove = () =>
+	{
+		removeId ( todo.id );
+	};
+	
 	
 	const handleOnUpdate = () =>
 	{
@@ -69,6 +69,7 @@ export default function Todo ( {
 				</div>
 		);
 	}
+	
 	else
 	{
 		return (
@@ -76,7 +77,9 @@ export default function Todo ( {
 						className = { todo.complete
 						              === true
 						              ? "todo-list complete"
-						              : "todo-list" }
+						              : "todo-list"
+							
+						}
 				>
 					<section
 							onClick = { handleTodoClick } className = "list-Text"

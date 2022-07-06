@@ -4,17 +4,23 @@ import { MdAddTask } from "react-icons/md";
 const FormTodoList = ( {
 	                       todoRef,
 	                       handleAddTodo
+	
                        } ) =>
 {
+	
 	return (
 			<section
 					className = "form-section"
 			>
-				<input
-						ref = { todoRef }
-						type = "text"
-						placeholder = "Que devez-vous faire?"
-				/>
+				
+				<section className = "form">
+					<input
+							ref = { todoRef }
+							type = "text"
+							placeholder = "Que devez-vous faire?"
+							className = "form-text"
+					/>
+				</section>
 				
 				<button
 						onClick = { handleAddTodo }
