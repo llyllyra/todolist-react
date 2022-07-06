@@ -1,7 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Delete from "./Delete.js";
-import FormTodoList from "./FormTodoList.js";
-import TodoList from './TodoList';
+import React, {
+	useState,
+	useRef,
+	useEffect
+}                       from 'react';
+import { Helmet }       from "react-helmet";
+import Delete           from "./Delete.js";
+import FormTodoList     from "./FormTodoList.js";
+import TodoList         from './TodoList';
 import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos';
@@ -9,13 +14,16 @@ const LOCAL_STORAGE_KEY = 'todoApp.todos';
 function App ()
 {
 	const [ todos, setTodos ] = useState ( [] );
-	const todoNameRef         = useRef ();
+	const todoRef             = useRef ();
 	
 	useEffect (
 			() =>
 			{
 				const storedTodos = JSON.parse ( localStorage.getItem ( LOCAL_STORAGE_KEY ) );
-				if ( storedTodos ) setTodos ( storedTodos );
+				if ( storedTodos )
+				{
+					setTodos ( storedTodos );
+				}
 			},
 			[]
 	);
@@ -34,27 +42,54 @@ function App ()
 	function toggleTodo ( id )
 	{
 		const newTodos = [ ... todos ];
-		const todo     = newTodos.find ( todo => todo.id === id );
-		todo.complete  = !todo.complete;
+		const todo     = newTodos.find ( todo => todo.id
+		                                         === id );
+		todo.complete
+		               = !todo.complete;
 		setTodos ( newTodos );
 	}
 	
-	function handleAddTodo ( e )
+	function handleAddTodo ()
 	{
-		const name = todoNameRef.current.value;
-		if ( name === '' ) return;
+		const name = todoRef.current.value;
+		if ( name
+		     === '' )
+		{
+			return;
+		}
 		setTodos ( prevTodos =>
 		           {
-			           return [ ... prevTodos, { id: uuidv4 (), name: name, complete: false } ];
+			           return [ ... prevTodos,
+			                    {
+				                    id      : uuidv4 (),
+				                    name    : name,
+				                    complete: false
+			                    }
+			           ];
 		           } );
-		todoNameRef.current.value = null;
+		todoRef.current.value
+				= null;
 	}
 	
 	function removeId ( id )
 	{
-		const removeArr = [ ... todos ].filter ( todo => todo.id !== id );
+		const removeArr = todos.filter ( todo => todo.id
+		                                         !== id );
 		setTodos ( removeArr );
 		
+	}
+	
+	function handleUpade (
+			editValue,
+			id
+	)
+	{
+		const newTodos = [ ... todos ];
+		const todo     = newTodos.find ( todo => todo.id
+		                                         === id );
+		todo.name
+		               = editValue;
+		setTodos ( newTodos );
 	}
 	
 	
@@ -66,14 +101,28 @@ function App ()
 	
 	return (
 			<>
+				<Helmet>
+					<title>Todo List</title>
+				</Helmet>
 				<nav>
 					<p>Todo List de Marlène</p>
 				</nav>
 				<main>
-					<FormTodoList todoNameRef = { todoNameRef } handleAddTodo = { handleAddTodo } />
-					<Delete todos = { todos } handleClearTodos = { handleClearTodos } />
+					<FormTodoList
+							todoRef = { todoRef }
+							handleAddTodo = { handleAddTodo }
+					/>
+					<Delete
+							todos = { todos }
+							handleClearTodos = { handleClearTodos }
+					/>
 					<ul>
-						<TodoList todos = { todos } toggleTodo = { toggleTodo } removeId = { removeId } />
+						<TodoList
+								todos = { todos }
+								toggleTodo = { toggleTodo }
+								removeId = { removeId }
+								handleUpade = { handleUpade }
+						/>
 					</ul>
 				</main>
 			</>

@@ -7,6 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   border-radius: 10px;
+  width: 500px;
 }
 
 .complete {
@@ -16,5 +17,9 @@
 }
 
 .complete-Icon {
+  display: none;
+}
+
+.update-Icon {
   display: none;
 }

@@ -1,13 +1,16 @@
 .form-section {
   display: flex;
   flex-direction: row;
-  box-sizing: content-box;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
 
   input {
-    width: 400px;
+    width: 350px;
     padding: 7px;
     background: $bgc;
     border: none;
+    border-bottom: 1px solid black;
   }
 
   .btn-Add {
@@ -16,6 +19,8 @@
     background: $principal;
     border: none;
     font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 7px;
   }
 
   .btn-Add:hover {

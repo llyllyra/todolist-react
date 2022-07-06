@@ -1,11 +1,16 @@
-import React from 'react';
-import { MdRemoveCircleOutline } from "react-icons/md";
-import { GrUpdate } from "react-icons/gr";
+import React, { useState } from 'react';
+import {
+	MdRemoveCircleOutline,
+	MdUpdate
+}                          from "react-icons/md";
 
-export default function Todo ( { todo, toggleTodo, removeId } )
+export default function Todo ( {
+	                               todo,
+	                               toggleTodo,
+	                               removeId,
+	                               handleUpade
+                               } )
 {
-	
-	
 	function handleTodoClick ()
 	{
 		toggleTodo ( todo.id );
@@ -17,16 +22,85 @@ export default function Todo ( { todo, toggleTodo, removeId } )
 		
 	}
 	
+	const [ onEdit, setOnEdit ]       = useState ( false );
+	const [ editValue, setEditValue ] = useState ( todo.name );
 	
-	return (
-			<div className = { todo.complete === true ? "todo-list complete" : "todo-list" }>
-				<section onClick = { handleTodoClick } className = "list-Text">{ todo.name }</section>
-				<section
-						className = { todo.complete === true ? "list-icon" : "list-icon complete-Icon" }
-						onClick = { remove }
+	const handleOnUpdate = () =>
+	{
+		setOnEdit ( true );
+	};
+	
+	const handleSave = id =>
+	{
+		setOnEdit ( false );
+		if ( editValue )
+		{
+			handleUpade (
+					editValue,
+					id
+			);
+		}
+		else
+		{
+			setEditValue ( todo.name );
+		}
+		
+	};
+	
+	
+	if ( onEdit )
+	{
+		return (
+				<div
+						className = { todo.complete
+						              === true
+						              ? "todo-list complete"
+						              : "todo-list" }
 				>
-					<MdRemoveCircleOutline />
-				</section>
-			</div>
-	);
+					<input
+							type = "text"
+							id = "editValue"
+							value = { editValue }
+							name = "editValue"
+							onChange = { e => setEditValue ( e.target.value ) }
+					/>
+					
+					<button onClick = { () => handleSave ( todo.id ) }>Save</button>
+				</div>
+		);
+	}
+	else
+	{
+		return (
+				<div
+						className = { todo.complete
+						              === true
+						              ? "todo-list complete"
+						              : "todo-list" }
+				>
+					<section
+							onClick = { handleTodoClick } className = "list-Text"
+					>{ todo.name }</section>
+					<section
+							className = { todo.complete
+							              === true
+							              ? "list-icon"
+							              : "list-icon complete-Icon" }
+							onClick = { remove }
+					>
+						<MdRemoveCircleOutline />
+					</section>
+					<section
+							className = { todo.complete
+							              !== true
+							              ? "list-icon"
+							              : "list-icon update-Icon" }
+							onClick = { handleOnUpdate }
+					>
+						<MdUpdate />
+					</section>
+				</div>
+		);
+	}
+	
 }
