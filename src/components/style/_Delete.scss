@@ -1,0 +1,42 @@
+.delete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+
+  div {
+    font-size: 1.5rem;
+
+    span {
+      font-weight: bold;
+
+    }
+  }
+
+}
+
+.btn-del {
+  width: 100px;
+  color: $text;
+  background: $principal;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.btn-del:hover {
+  color: $textS;
+  background: $secondaire;
+}
+
+.red {
+  color: red;
+}
+
+.false {
+  display: none;
+}
+
+
