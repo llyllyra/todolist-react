@@ -86,9 +86,9 @@ export default function Todo ( {
 							
 						}
 				>
-					<section
+					<p
 							onClick = { handleTodoClick } className = "list-Text"
-					>{ todo.name }</section>
+					>{ todo.name }</p>
 					<section
 							className = { todo.complete
 							              === true
