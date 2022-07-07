@@ -42,7 +42,7 @@ function App ()
 	
 	const toggleTodo = ( id ) =>
 	{
-		const newTodos = [ ... todos ];
+		const newTodos = [ ...todos ];
 		const todo     = newTodos.find ( todo => todo.id
 		                                         === id );
 		todo.complete
@@ -63,7 +63,7 @@ function App ()
 		
 		setTodos ( prevTodos =>
 		           {
-			           return [ ... prevTodos,
+			           return [ ...prevTodos,
 			                    {
 				                    id        : uuidv4 (),
 				                    name      : name,
@@ -89,7 +89,7 @@ function App ()
 			id
 	) =>
 	{
-		const newTodos = [ ... todos ];
+		const newTodos = [ ...todos ];
 		const todo     = newTodos.find ( todo => todo.id
 		                                         === id );
 		todo.name
