@@ -22,4 +22,4 @@ L'application stocke ses données dans le cache, pour pouvoir le récupéré apr
 [Marlene Bouvard](https://github.com/llyllyra/todolist-react)
 
 # deployer sur Netlify:
-[lien]()
+[Lien](https://sparkling-sundae-d37a22.netlify.app/)
