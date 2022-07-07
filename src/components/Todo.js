@@ -63,9 +63,14 @@ export default function Todo ( {
 							value = { editValue }
 							name = "editValue"
 							onChange = { e => setEditValue ( e.target.value ) }
+							className="inputUpdate"
 					/>
 					
-					<button onClick = { () => handleSave ( todo.id ) }>Save</button>
+					<button
+							className="btn-update"
+							onClick = { () => handleSave ( todo.id )
+							
+					}>Save</button>
 				</div>
 		);
 	}
